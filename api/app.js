@@ -4,9 +4,11 @@ const cors = require('cors');
 const app = express();
 
   //Esto solo deja entrar a los orígenes definidos en whitelist.
-  const whitelist = ['http://localhost:3000','http://localhost:5173', 'https://rarefarm.netlify.app/'];
+  const whitelist = ['http://localhost:3000','http://localhost:5173', 'https://rarefarm.netlify.app'];
   
   var corsOptionsDelegate = function (req, callback) {
+     const origin = req.header('Origin');
+  console.log('CORS Origin:', origin);
     var corsOptions;
     if (whitelist.indexOf(req.header('Origin')) !== -1) {
       corsOptions = { origin: true } // reflect (enable) the requested origin in the CORS response
